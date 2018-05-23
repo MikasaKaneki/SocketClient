@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Share;
+using UnityEngine;
 
 public class RequestManager : BaseManager
 {
@@ -21,7 +22,14 @@ public class RequestManager : BaseManager
     }
 
 
-    public void HandleRequest()
+    public void HandleRequest(RequestCode requestCode, string data)
     {
+        BaseRequest request = _requestDict.TryGet<RequestCode, BaseRequest>(requestCode);
+        if (request == null)
+        {
+            Debug.LogError("无法得到RequestCode:" + requestCode + "对应的类");
+        }
+
+        request.OnResponse(data);
     }
 }
