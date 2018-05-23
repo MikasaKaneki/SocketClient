@@ -1,0 +1,16 @@
+### Folders
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+x64/
+build/
+bld/
+[Bb]in/
+[Oo]bj/
+.vs/*
+.idea/*
+*.iml
+*.user
+obj/
+Temp/
+*.meta
