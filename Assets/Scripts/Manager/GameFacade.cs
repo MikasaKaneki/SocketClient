@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Share;
 using UnityEngine;
 
 public class GameFacade : MonoBehaviour
@@ -10,6 +11,35 @@ public class GameFacade : MonoBehaviour
     private CameraManager _cameraManager;
     private RequestManager _requestManager;
     private ClientManager _clientManager;
+
+    private static GameFacade _instance;
+
+    public static GameFacade Instance
+    {
+        get { return _instance; }
+    }
+
+
+    public void AddRequest(RequestCode requestCode, BaseRequest request)
+    {
+        _requestManager.AddRequest(requestCode, request);
+    }
+
+    public void RemoveRequest(RequestCode requestCode)
+    {
+        _requestManager.RemoveRequest(requestCode);
+    }
+
+    private void Awake()
+    {
+        if (_instance != null)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+
+        _instance = this;
+    }
 
     private void Start()
     {
@@ -27,22 +57,22 @@ public class GameFacade : MonoBehaviour
 
     private void InitManager()
     {
-        _uiManager = new UIManager();
+        _uiManager = new UIManager(this);
         _uiManager.OnInit();
 
-        _audioManager = new AudioManager();
+        _audioManager = new AudioManager(this);
         _audioManager.OnInit();
 
-        _playerMananger = new PlayerMananger();
+        _playerMananger = new PlayerMananger(this);
         _playerMananger.OnInit();
 
-        _cameraManager = new CameraManager();
+        _cameraManager = new CameraManager(this);
         _cameraManager.OnInit();
 
-        _requestManager = new RequestManager();
+        _requestManager = new RequestManager(this);
         _requestManager.OnInit();
 
-        _clientManager = new ClientManager();
+        _clientManager = new ClientManager(this);
         _clientManager.OnInit();
     }
 

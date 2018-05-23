@@ -95,6 +95,8 @@
     <Compile Include="Assets\Scripts\Manager\PlayerMananger.cs" />
     <Compile Include="Assets\Scripts\Manager\RequestManager.cs" />
     <Compile Include="Assets\Scripts\Net\ClientManager.cs" />
+    <Compile Include="Assets\Scripts\Net\Message.cs" />
+    <Compile Include="Assets\Scripts\Request\BaseRequest.cs" />
     <Compile Include="Assets\UIFramework\Base\BasePanel.cs" />
     <Compile Include="Assets\UIFramework\Extension\DictionaryExtension.cs" />
     <Compile Include="Assets\UIFramework\Manager\GameRoot.cs" />
