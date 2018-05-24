@@ -35,8 +35,6 @@ public class ClientManager : BaseManager
     }
 
 
-
-
     private void Start()
     {
         _clientSocket.BeginReceive(msg.Data, msg.CurDataSize, msg.RemianSize, SocketFlags.None, ReceiveCallback, null);
@@ -48,6 +46,7 @@ public class ClientManager : BaseManager
         {
             int count = _clientSocket.EndReceive(ar);
             msg.ReadMessage(count, OnProcessDataCallback);
+            Start();
         }
         catch (Exception ex)
         {
@@ -58,10 +57,7 @@ public class ClientManager : BaseManager
 
     private void OnProcessDataCallback(RequestCode requestCode, string data)
     {
-        //TODO
-        switch (requestCode)
-        {
-        }
+        _facade.HandleReponse(requestCode, data);
     }
 
     public void SendRequest(RequestCode requestCode, ActionCode actionCode, string data)
