@@ -2,19 +2,19 @@
   "infoList": [
     {
       "panelTypeString": "Message",
-      "path": "UIPanel/MessagePanel"
+      "path": "UIPanel/txt_Message"
     },
     {
       "panelTypeString": "Start",
-      "path": "UIPanel/StartPanel"
+      "path": "UIPanel/btn_Login"
     },
     {
       "panelTypeString": "Register",
-      "path": "UIPanel/RegisterPanel"
+      "path": "UIPanel/panel_Register"
     },
     {
       "panelTypeString": "Login",
-      "path": "UIPanel/LoginPanel"
+      "path": "UIPanel/panel_Login"
     }
   ]
 }

@@ -100,11 +100,19 @@ public class UIManager : BaseManager
             //string path;
             //panelPathDict.TryGetValue(panelType, out path);
             string path = panelPathDict.TryGet(panelType);
-            GameObject instPanel = GameObject.Instantiate(Resources.Load(path)) as GameObject;
-            instPanel.transform.SetParent(CanvasTransform, false);
-            instPanel.GetComponent<BasePanel>().UiManager = this;
-            panelDict.Add(panelType, instPanel.GetComponent<BasePanel>());
-            return instPanel.GetComponent<BasePanel>();
+            try
+            {
+                GameObject instPanel = GameObject.Instantiate(Resources.Load(path)) as GameObject;
+                instPanel.transform.SetParent(CanvasTransform, false);
+                instPanel.GetComponent<BasePanel>().UiManager = this;
+                panelDict.Add(panelType, instPanel.GetComponent<BasePanel>());
+                return instPanel.GetComponent<BasePanel>();
+            }
+            catch (Exception e)
+            {
+                throw new Exception("加载面板失败 面板的类型panelType is:" + panelType + "   面板的路径 path is:" + path +
+                                    "  error is:" + e.Message);
+            }
         }
         else
         {

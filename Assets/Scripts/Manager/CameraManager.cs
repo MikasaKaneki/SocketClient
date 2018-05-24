@@ -2,5 +2,6 @@
 {
     public CameraManager(GameFacade facade) : base(facade)
     {
+
     }
 }

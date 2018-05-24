@@ -22,7 +22,7 @@ public class ClientManager : BaseManager
     {
         base.OnInit();
         msg = new Message();
-        Socket clientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+        _clientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
         try
         {
             _clientSocket.Connect(IP, port);
@@ -30,7 +30,7 @@ public class ClientManager : BaseManager
         }
         catch (Exception e)
         {
-            Debug.LogWarning("ClientSockegt无法连接到服务器 " + e.Message);
+            Debug.LogError("ClientSockegt无法连接到服务器 " + e.Message);
         }
     }
 
