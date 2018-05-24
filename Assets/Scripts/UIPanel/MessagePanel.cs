@@ -23,6 +23,7 @@ public class MessagePanel : BasePanel
     /// <param name="time">显示的时间</param>
     public void ShowMessage(string msg, float time = 3)
     {
+        text.color = Color.white;
         text.text = msg;
         text.enabled = true;
         Invoke("Hide", time);

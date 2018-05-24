@@ -20,6 +20,14 @@ public class UIManager : BaseManager
         }
     }
 
+
+    public override void OnInit()
+    {
+        base.OnInit();
+        PushPanel(UIPanelType.Message);
+        PushPanel(UIPanelType.Start);
+    }
+
     public UIManager(GameFacade facade) : base(facade)
     {
         ParseUIPanelTypeJson();

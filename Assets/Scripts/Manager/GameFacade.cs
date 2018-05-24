@@ -91,4 +91,10 @@ public class GameFacade : MonoBehaviour
         _requestManager.OnDesory();
         _clientManager.OnDesory();
     }
+
+
+    public void ShowMessage(string message)
+    {
+        _uiManager.ShowMessage(message);
+    }
 }
