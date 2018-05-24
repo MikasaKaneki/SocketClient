@@ -29,6 +29,7 @@ public class UIManager : BaseManager
     private Dictionary<UIPanelType, BasePanel> panelDict; //保存所有实例化面板的游戏物体身上的BasePanel组件
     private Stack<BasePanel> panelStack;
 
+    private MessagePanel _messagePanel;
 
     /// <summary>
     /// 把某个页面入栈，  把某个页面显示在界面上
@@ -93,6 +94,7 @@ public class UIManager : BaseManager
             string path = panelPathDict.TryGet(panelType);
             GameObject instPanel = GameObject.Instantiate(Resources.Load(path)) as GameObject;
             instPanel.transform.SetParent(CanvasTransform, false);
+            instPanel.GetComponent<BasePanel>().UiManager = this;
             panelDict.Add(panelType, instPanel.GetComponent<BasePanel>());
             return instPanel.GetComponent<BasePanel>();
         }
@@ -123,13 +125,28 @@ public class UIManager : BaseManager
         }
     }
 
+    public void InjectMessagePanel(MessagePanel messagePanel)
+    {
+        this._messagePanel = messagePanel;
+    }
+
+    public void ShowMessage(string message)
+    {
+        if (string.IsNullOrEmpty(message))
+        {
+            return;
+        }
+
+        this._messagePanel.ShowMessage(message);
+    }
+
     /// <summary>
     /// just for test
     /// </summary>
     public void Test()
     {
         string path;
-        panelPathDict.TryGetValue(UIPanelType.Knapsack, out path);
-        Debug.Log(path);
+//        panelPathDict.TryGetValue(UIPanelType.Knapsack, out path);
+//        Debug.Log(path);
     }
 }

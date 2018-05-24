@@ -1,13 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BasePanel : MonoBehaviour {
+public class BasePanel : MonoBehaviour
+{
+    protected UIManager _uiManager;
+
+    public UIManager UiManager
+    {
+        set { _uiManager = value; }
+    }
+
     /// <summary>
     /// 界面被显示出来
     /// </summary>
     public virtual void OnEnter()
     {
-
     }
 
     /// <summary>
@@ -15,7 +22,6 @@ public class BasePanel : MonoBehaviour {
     /// </summary>
     public virtual void OnPause()
     {
-
     }
 
     /// <summary>
@@ -23,7 +29,6 @@ public class BasePanel : MonoBehaviour {
     /// </summary>
     public virtual void OnResume()
     {
-
     }
 
     /// <summary>
@@ -31,6 +36,5 @@ public class BasePanel : MonoBehaviour {
     /// </summary>
     public virtual void OnExit()
     {
-
     }
 }
