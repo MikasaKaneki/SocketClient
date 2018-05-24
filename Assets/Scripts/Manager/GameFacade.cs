@@ -30,6 +30,11 @@ public class GameFacade : MonoBehaviour
         _requestManager.RemoveRequest(requestCode);
     }
 
+    public void HandleReponse(RequestCode requestCode, string data)
+    {
+        _requestManager.HandleRequest(requestCode, data);
+    }
+
     private void Awake()
     {
         if (_instance != null)
