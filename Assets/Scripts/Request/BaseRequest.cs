@@ -3,23 +3,29 @@ using UnityEngine;
 
 public class BaseRequest : MonoBehaviour
 {
-    private RequestCode _requestCode = RequestCode.None;
+    protected RequestCode _requestCode = RequestCode.None;
+    protected ActionCode _actionCode = ActionCode.None;
+    protected GameFacade _facade;
+
 
     protected virtual void Awake()
     {
-        GameFacade.Instance.AddRequest(_requestCode, this);
+        this._facade = GameFacade.Instance;
+        this._facade.AddRequest(_actionCode, this);
     }
 
-    public virtual void SendRequest()
+    public virtual void SendRequest(string data)
     {
+        this._facade.SendRequest(_requestCode, _actionCode, data);
     }
 
     public virtual void OnResponse(string data)
     {
     }
 
+
     private void OnDestroy()
     {
-        GameFacade.Instance.RemoveRequest(_requestCode);
+        this._facade.RemoveRequest(_actionCode);
     }
 }

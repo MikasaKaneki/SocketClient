@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,9 +24,11 @@ public class MessagePanel : BasePanel
     /// <param name="time">显示的时间</param>
     public void ShowMessage(string msg, float time = 3)
     {
+        text.CrossFadeAlpha(1, 0.01f, false);
         text.color = Color.white;
         text.text = msg;
         text.enabled = true;
+        Debug.Log("提示板提示信息:" + msg);
         Invoke("Hide", time);
     }
 

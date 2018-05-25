@@ -20,19 +20,19 @@ public class GameFacade : MonoBehaviour
     }
 
 
-    public void AddRequest(RequestCode requestCode, BaseRequest request)
+    public void AddRequest(ActionCode actionCode, BaseRequest request)
     {
-        _requestManager.AddRequest(requestCode, request);
+        _requestManager.AddRequest(actionCode, request);
     }
 
-    public void RemoveRequest(RequestCode requestCode)
+    public void RemoveRequest(ActionCode actionCode)
     {
-        _requestManager.RemoveRequest(requestCode);
+        _requestManager.RemoveRequest(actionCode);
     }
 
-    public void HandleReponse(RequestCode requestCode, string data)
+    public void HandleReponse(ActionCode actionCode, string data)
     {
-        _requestManager.HandleRequest(requestCode, data);
+        _requestManager.HandleRequest(actionCode, data);
     }
 
     private void Awake()
@@ -96,5 +96,11 @@ public class GameFacade : MonoBehaviour
     public void ShowMessage(string message)
     {
         _uiManager.ShowMessage(message);
+    }
+
+
+    public void SendRequest(RequestCode requestCode, ActionCode actionCode, string data)
+    {
+        _clientManager.SendRequest(requestCode, actionCode, data);
     }
 }

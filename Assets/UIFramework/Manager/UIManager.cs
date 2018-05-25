@@ -148,6 +148,7 @@ public class UIManager : BaseManager
 
     public void ShowMessage(string message)
     {
+        Debug.Log("UIManange ShowTip:" + message);
         if (string.IsNullOrEmpty(message))
         {
             return;

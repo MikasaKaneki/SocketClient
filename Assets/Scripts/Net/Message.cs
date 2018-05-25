@@ -31,7 +31,7 @@ class Message
     }
 
 
-    public string ReadMessage(int newDataAmount, Action<RequestCode, string> processDataCallback)
+    public string ReadMessage(int newDataAmount, Action<ActionCode, string> processDataCallback)
     {
         curDataSize += newDataAmount;
         string message = null;
@@ -47,9 +47,9 @@ class Message
                 int count = BitConverter.ToInt32(data, 0);
                 if (curDataSize - flagSize >= count)
                 {
-                    RequestCode requestCode = (RequestCode) BitConverter.ToInt32(data, 4);
+                    ActionCode actionCode = (ActionCode) BitConverter.ToInt32(data, 4);
                     message = Encoding.UTF8.GetString(data, flagSize + 4, count - 4);
-                    processDataCallback(requestCode, message);
+                    processDataCallback(actionCode, message);
                     Array.Copy(data, count + flagSize, data, 0, curDataSize - flagSize - count);
                     curDataSize -= (count + flagSize);
                 }
