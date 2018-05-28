@@ -21,7 +21,15 @@ public class LoginPanel : BasePanel
         transform.DOScale(1, 0.5f);
         transform.localPosition = new Vector3(1000, 0, 0);
         transform.DOLocalMove(Vector3.zero, 0.5f);
+    }
 
+    public override void OnResume()
+    {
+        OnEnter();
+    }
+
+    private void Start()
+    {
         _btnLogin = transform.Find("btn_Login").GetComponent<Button>();
         _btnRegister = transform.Find("btn_Register").GetComponent<Button>();
         _btnClose = transform.Find("btn_Close").GetComponent<Button>();
@@ -72,6 +80,8 @@ public class LoginPanel : BasePanel
 
     private void OnRegisterBtnClick()
     {
+        _uiManager.PushPanel(UIPanelType.Register);
+        OnExit();
     }
 
     public void OnLoginResponse(ReturnCode returnCode)
