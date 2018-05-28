@@ -62,6 +62,7 @@ public class ClientManager : BaseManager
 
     public void SendRequest(RequestCode requestCode, ActionCode actionCode, string data)
     {
+        Debug.Log("{Client} Send to Server data is:" + data);
         byte[] bytes = Message.PackData(requestCode, actionCode, data);
         _clientSocket.Send(bytes);
     }

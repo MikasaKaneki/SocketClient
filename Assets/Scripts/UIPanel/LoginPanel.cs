@@ -1,5 +1,6 @@
 ﻿using UnityEngine.UI;
 using DG.Tweening;
+using Share;
 using UnityEditor;
 using UnityEngine;
 
@@ -32,6 +33,8 @@ public class LoginPanel : BasePanel
         _btnLogin.onClick.AddListener(OnLoginBtnClick);
         _btnRegister.onClick.AddListener(OnRegisterBtnClick);
         _btnClose.onClick.AddListener(OnCloseBtnClick);
+
+        _loginRequest = GetComponent<LoginRequest>();
     }
 
     public override void OnExit()
@@ -63,10 +66,29 @@ public class LoginPanel : BasePanel
             //输出提示信息
             _uiManager.ShowMessage(msg);
         }
+
+        _loginRequest.SendRequest(_inputFieldUserName.text, _inputFieldPassword.text);
     }
 
     private void OnRegisterBtnClick()
     {
+    }
+
+    public void OnLoginResponse(ReturnCode returnCode)
+    {
+        if (returnCode == ReturnCode.Success)
+        {
+            //成功进入
+        }
+        else if (returnCode == ReturnCode.Fail)
+        {
+            //失败的
+            _uiManager.ShowMessageSync("用户名错误，请重新输入！！");
+        }
+        else if (returnCode == ReturnCode.NotFound)
+        {
+            _uiManager.ShowMessageSync("密码错误，请重新输入！！");
+        }
     }
 
     private void OnCloseBtnClick()

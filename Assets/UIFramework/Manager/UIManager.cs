@@ -157,6 +157,17 @@ public class UIManager : BaseManager
         this._messagePanel.ShowMessage(message);
     }
 
+    public void ShowMessageSync(string message)
+    {
+        Debug.Log("UIManange ShowTip:" + message);
+        if (string.IsNullOrEmpty(message))
+        {
+            return;
+        }
+
+        this._messagePanel.ShowMessageSync(message);
+    }
+
     /// <summary>
     /// just for test
     /// </summary>

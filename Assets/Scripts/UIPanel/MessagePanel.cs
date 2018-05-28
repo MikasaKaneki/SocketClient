@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.UI;
 
 public class MessagePanel : BasePanel
 {
     private Text text;
     private float numStayTime = 3;
+
+    private string _message;
 
     public override void OnEnter()
     {
@@ -30,6 +33,21 @@ public class MessagePanel : BasePanel
         text.enabled = true;
         Debug.Log("提示板提示信息:" + msg);
         Invoke("Hide", time);
+    }
+
+
+    public void ShowMessageSync(string msg)
+    {
+        _message = msg;
+    }
+
+    private void Update()
+    {
+        if (_message != null)
+        {
+            ShowMessage(_message);
+            _message = null;
+        }
     }
 
 
