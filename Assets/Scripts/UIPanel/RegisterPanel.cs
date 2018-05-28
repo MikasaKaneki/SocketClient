@@ -21,7 +21,9 @@ public class RegisterPanel : BasePanel
         _btnRegister = transform.Find("btn_Register").GetComponent<Button>();
 
         _btnClose.onClick.AddListener(CloseBtnClick);
-        _btnClose.onClick.AddListener(RegisterBtnClick);
+        _btnRegister.onClick.AddListener(RegisterBtnClick);
+
+        _registerRequest = GetComponent<RegisterRequest>();
     }
 
     public override void OnEnter()
@@ -44,7 +46,7 @@ public class RegisterPanel : BasePanel
 
     private void RegisterBtnClick()
     {
-        Debug.Log("点击登录按钮");
+        Debug.Log("注册按钮");
         string msg = "";
         if (string.IsNullOrEmpty(_inputFieldName.text))
         {

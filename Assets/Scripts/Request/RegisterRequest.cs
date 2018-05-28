@@ -7,7 +7,7 @@ public class RegisterRequest : BaseRequest
     protected override void Awake()
     {
         _requestCode = RequestCode.User;
-        _actionCode = ActionCode.Login;
+        _actionCode = ActionCode.Register;
         _registerPanel = GetComponent<RegisterPanel>();
         base.Awake();
     }
@@ -22,7 +22,6 @@ public class RegisterRequest : BaseRequest
     {
         base.OnResponse(data);
         ReturnCode returnCode = (ReturnCode) int.Parse(data);
-
         _registerPanel.OnRegisterResponse(returnCode);
     }
 }
