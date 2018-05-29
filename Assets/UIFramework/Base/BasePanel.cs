@@ -4,6 +4,8 @@ using System.Collections;
 public class BasePanel : MonoBehaviour
 {
     protected UIManager _uiManager;
+    protected GameFacade _facade = GameFacade.Instance;
+
 
     public UIManager UiManager
     {
@@ -36,5 +38,10 @@ public class BasePanel : MonoBehaviour
     /// </summary>
     public virtual void OnExit()
     {
+    }
+
+    protected void PlayClickSound()
+    {
+        _facade.PlayNormalSound(AudioManager.SoundButtonClick);
     }
 }

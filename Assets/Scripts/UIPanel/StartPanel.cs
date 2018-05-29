@@ -17,6 +17,7 @@ public class StartPanel : BasePanel
 
     private void OnLiginBtnClick()
     {
+        PlayClickSound();
         _uiManager.PushPanel(UIPanelType.Login);
     }
 

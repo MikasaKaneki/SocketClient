@@ -103,4 +103,15 @@ public class GameFacade : MonoBehaviour
     {
         _clientManager.SendRequest(requestCode, actionCode, data);
     }
+
+
+    public void PlayBgSound(string name)
+    {
+        _audioManager.PlayBgSound(name);
+    }
+
+    public void PlayNormalSound(string name)
+    {
+        _audioManager.PlayNormalSound(name);
+    }
 }

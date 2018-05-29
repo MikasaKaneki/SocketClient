@@ -39,6 +39,7 @@ public class RegisterPanel : BasePanel
 
     private void CloseBtnClick()
     {
+        PlayClickSound();
         transform.DOScale(Vector3.zero, 0.5f);
         Tweener tweener = transform.DOLocalMoveX(1000, 0.5f);
         tweener.OnComplete(delegate { _uiManager.PopPanel(); });
@@ -46,6 +47,7 @@ public class RegisterPanel : BasePanel
 
     private void RegisterBtnClick()
     {
+        PlayClickSound();
         Debug.Log("注册按钮");
         string msg = "";
         if (string.IsNullOrEmpty(_inputFieldName.text))

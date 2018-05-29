@@ -47,12 +47,14 @@ public class LoginPanel : BasePanel
 
     public override void OnExit()
     {
+
         base.OnExit();
         gameObject.SetActive(false);
     }
 
     private void OnLoginBtnClick()
     {
+        PlayClickSound();
         Debug.Log("点击登录按钮");
         string msg = "";
         if (string.IsNullOrEmpty(_inputFieldUserName.text))
@@ -80,6 +82,7 @@ public class LoginPanel : BasePanel
 
     private void OnRegisterBtnClick()
     {
+        PlayClickSound();
         _uiManager.PushPanel(UIPanelType.Register);
         OnExit();
     }
@@ -103,6 +106,7 @@ public class LoginPanel : BasePanel
 
     private void OnCloseBtnClick()
     {
+        PlayClickSound();
         transform.DOScale(Vector3.zero, 0.5f);
         Tweener tweener = transform.DOLocalMoveX(1000, 0.5f);
         tweener.OnComplete(delegate { _uiManager.PopPanel(); });
