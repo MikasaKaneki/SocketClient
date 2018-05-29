@@ -14,4 +14,8 @@
     public virtual void OnDesory()
     {
     }
+
+    public virtual void Update()
+    {
+    }
 }

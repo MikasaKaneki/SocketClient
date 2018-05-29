@@ -1,7 +1,6 @@
 ﻿using UnityEngine.UI;
 using DG.Tweening;
 using Share;
-using UnityEditor;
 using UnityEngine;
 
 public class LoginPanel : BasePanel
@@ -28,6 +27,14 @@ public class LoginPanel : BasePanel
         OnEnter();
     }
 
+    public override void OnPause()
+    {
+        base.OnPause();
+        transform.DOScale(Vector3.zero, 0.5f);
+        Tweener tweener = transform.DOLocalMoveX(1000, 0.5f);
+        tweener.OnComplete(delegate { gameObject.SetActive(false); });
+    }
+
     private void Start()
     {
         _btnLogin = transform.Find("btn_Login").GetComponent<Button>();
@@ -47,7 +54,6 @@ public class LoginPanel : BasePanel
 
     public override void OnExit()
     {
-
         base.OnExit();
         gameObject.SetActive(false);
     }
@@ -92,6 +98,8 @@ public class LoginPanel : BasePanel
         if (returnCode == ReturnCode.Success)
         {
             //成功进入
+            Debug.Log("登录成功");
+            _uiManager.PushPanelSync(UIPanelType.RoomList);
         }
         else if (returnCode == ReturnCode.Fail)
         {

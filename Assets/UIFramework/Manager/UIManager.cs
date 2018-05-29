@@ -39,6 +39,8 @@ public class UIManager : BaseManager
 
     private MessagePanel _messagePanel;
 
+    private UIPanelType _panelTypeToPush = UIPanelType.None;
+
     /// <summary>
     /// 把某个页面入栈，  把某个页面显示在界面上
     /// </summary>
@@ -166,6 +168,21 @@ public class UIManager : BaseManager
         }
 
         this._messagePanel.ShowMessageSync(message);
+    }
+
+
+    public void PushPanelSync(UIPanelType uiPanelType)
+    {
+        Debug.Log("PushPanelSync。uiPanelType：：" + uiPanelType);
+        _panelTypeToPush = uiPanelType;
+    }
+
+    public override void Update()
+    {
+        if (_panelTypeToPush != UIPanelType.None)
+        {
+            PushPanel(_panelTypeToPush);
+        }
     }
 
     /// <summary>

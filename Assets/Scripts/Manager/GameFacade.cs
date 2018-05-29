@@ -53,7 +53,19 @@ public class GameFacade : MonoBehaviour
 
     private void Update()
     {
+        _uiManager.Update();
+        _audioManager.Update();
+        _playerMananger.Update();
+        _cameraManager.Update();
+        _requestManager.Update();
+        _clientManager.Update();
     }
+
+    private void UpdateManager()
+    {
+
+    }
+
 
     private void OnDestroy()
     {
