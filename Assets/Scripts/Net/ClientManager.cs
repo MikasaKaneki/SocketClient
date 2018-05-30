@@ -44,9 +44,12 @@ public class ClientManager : BaseManager
     {
         try
         {
-            int count = _clientSocket.EndReceive(ar);
-            msg.ReadMessage(count, OnProcessDataCallback);
-            Start();
+            if (_clientSocket != null && _clientSocket.Connected)
+            {
+                int count = _clientSocket.EndReceive(ar);
+                msg.ReadMessage(count, OnProcessDataCallback);
+                Start();
+            }
         }
         catch (Exception ex)
         {
@@ -73,6 +76,7 @@ public class ClientManager : BaseManager
         try
         {
             _clientSocket.Close();
+            Debug.Log("关闭客户端Socket的连接");
         }
         catch (Exception e)
         {

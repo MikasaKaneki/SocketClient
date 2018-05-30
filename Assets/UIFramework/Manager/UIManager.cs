@@ -56,6 +56,8 @@ public class UIManager : BaseManager
             topPanel.OnPause();
         }
 
+        Debug.Log("第" + panelStack.Count + "个进入栈的面板是:" + panelType);
+
         BasePanel panel = GetPanel(panelType);
         panel.OnEnter();
         panelStack.Push(panel);
@@ -182,6 +184,7 @@ public class UIManager : BaseManager
         if (_panelTypeToPush != UIPanelType.None)
         {
             PushPanel(_panelTypeToPush);
+            _panelTypeToPush = UIPanelType.None;
         }
     }
 

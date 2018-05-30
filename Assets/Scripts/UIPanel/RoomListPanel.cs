@@ -10,20 +10,51 @@ public class RoomListPanel : BasePanel
     private RectTransform _leftTransform;
     private RectTransform _rightTransform;
     private Button _closeBtn;
+    private Button _createRoomBtn;
+    private Button _refreshRoomBtn;
+
+
+    private void Start()
+    {
+        _leftTransform = transform.Find("BattleRes").GetComponent<RectTransform>();
+        _rightTransform = transform.Find("RoomList").GetComponent<RectTransform>();
+
+        _closeBtn = transform.Find("RoomList/btnClose").GetComponent<Button>();
+        _closeBtn.onClick.AddListener(CloseBtnClick);
+
+        _createRoomBtn = transform.Find("RoomList/CreateRoomBtn").GetComponent<Button>();
+        _createRoomBtn.onClick.AddListener(CreateRoomBtnClick);
+
+        _refreshRoomBtn = transform.Find("RoomList/RefreshRoomBtn").GetComponent<Button>();
+        _refreshRoomBtn.onClick.AddListener(RefreshRoomBtnClick);
+        EnterAnim();
+    }
 
     public override void OnEnter()
     {
         base.OnEnter();
+        SetBattleResult();
         gameObject.SetActive(true);
-        _leftTransform = transform.Find("BattleRes").GetComponent<RectTransform>();
-        _rightTransform = transform.Find("RoomList").GetComponent<RectTransform>();
-        _closeBtn=transform.Find("RoomList/")
-        _closeBtn.onClick.AddListener(() =>
+        if (_leftTransform)
         {
-            QuitAnim();
-            _uiManager.PopPanel();
-        });
-        EnterAnim();
+            EnterAnim();
+        }
+    }
+
+
+    private void CreateRoomBtnClick()
+    {
+    }
+
+    private void RefreshRoomBtnClick()
+    {
+    }
+
+
+    private void CloseBtnClick()
+    {
+        QuitAnim();
+        _uiManager.PopPanel();
     }
 
 
@@ -36,12 +67,13 @@ public class RoomListPanel : BasePanel
     public override void OnPause()
     {
         base.OnPause();
-        QuitAnim();
+//        QuitAnim();
     }
 
     public override void OnResume()
     {
         base.OnResume();
+        SetBattleResult();
         EnterAnim();
     }
 
@@ -59,7 +91,16 @@ public class RoomListPanel : BasePanel
 
     private void QuitAnim()
     {
-        _leftTransform.DOMoveX(-1000, 0.5f);
-        _rightTransform.DOMoveX(1000, 0.5f).OnComplete(() => { gameObject.SetActive(false); });
+        _leftTransform.DOLocalMoveX(-1000, 0.5f);
+        _rightTransform.DOLocalMoveX(1000, 0.5f).OnComplete(() => { gameObject.SetActive(false); });
+    }
+
+
+    private void SetBattleResult()
+    {
+        UserData userData = _facade.GetUserData();
+        transform.Find("BattleRes/UserName").GetComponent<Text>().text = userData.UserName;
+        transform.Find("BattleRes/TotalCount").GetComponent<Text>().text = "总场数:" + userData.TotalCount.ToString();
+        transform.Find("BattleRes/WinCount").GetComponent<Text>().text = "胜利:" + userData.WinCount.ToString();
     }
 }

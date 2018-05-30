@@ -94,6 +94,7 @@
     <Compile Include="Assets\Scripts\Manager\GameFacade.cs" />
     <Compile Include="Assets\Scripts\Manager\PlayerMananger.cs" />
     <Compile Include="Assets\Scripts\Manager\RequestManager.cs" />
+    <Compile Include="Assets\Scripts\Model\UserData.cs" />
     <Compile Include="Assets\Scripts\Net\ClientManager.cs" />
     <Compile Include="Assets\Scripts\Net\Message.cs" />
     <Compile Include="Assets\Scripts\Request\BaseRequest.cs" />
@@ -102,6 +103,7 @@
     <Compile Include="Assets\Scripts\UIPanel\LoginPanel.cs" />
     <Compile Include="Assets\Scripts\UIPanel\MessagePanel.cs" />
     <Compile Include="Assets\Scripts\UIPanel\RegisterPanel.cs" />
+    <Compile Include="Assets\Scripts\UIPanel\RoomItem.cs" />
     <Compile Include="Assets\Scripts\UIPanel\RoomListPanel.cs" />
     <Compile Include="Assets\Scripts\UIPanel\StartPanel.cs" />
     <Compile Include="Assets\UIFramework\Base\BasePanel.cs" />

@@ -63,7 +63,6 @@ public class GameFacade : MonoBehaviour
 
     private void UpdateManager()
     {
-
     }
 
 
@@ -125,5 +124,16 @@ public class GameFacade : MonoBehaviour
     public void PlayNormalSound(string name)
     {
         _audioManager.PlayNormalSound(name);
+    }
+
+
+    public void SetUserData(UserData userData)
+    {
+        _playerMananger.UserData = userData;
+    }
+
+    public UserData GetUserData()
+    {
+        return _playerMananger.UserData;
     }
 }

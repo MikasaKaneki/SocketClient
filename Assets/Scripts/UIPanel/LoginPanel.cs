@@ -37,6 +37,7 @@ public class LoginPanel : BasePanel
 
     private void Start()
     {
+        Debug.Log("oooooooooooo22");
         _btnLogin = transform.Find("btn_Login").GetComponent<Button>();
         _btnRegister = transform.Find("btn_Register").GetComponent<Button>();
         _btnClose = transform.Find("btn_Close").GetComponent<Button>();
