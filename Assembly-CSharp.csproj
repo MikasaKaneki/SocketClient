@@ -105,6 +105,7 @@
     <Compile Include="Assets\Scripts\UIPanel\RegisterPanel.cs" />
     <Compile Include="Assets\Scripts\UIPanel\RoomItem.cs" />
     <Compile Include="Assets\Scripts\UIPanel\RoomListPanel.cs" />
+    <Compile Include="Assets\Scripts\UIPanel\RoomPanel.cs" />
     <Compile Include="Assets\Scripts\UIPanel\StartPanel.cs" />
     <Compile Include="Assets\UIFramework\Base\BasePanel.cs" />
     <Compile Include="Assets\UIFramework\Extension\DictionaryExtension.cs" />

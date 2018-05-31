@@ -12,7 +12,9 @@ public class RoomListPanel : BasePanel
     private Button _closeBtn;
     private Button _createRoomBtn;
     private Button _refreshRoomBtn;
-
+    private GridLayoutGroup _roomLayoutGroup;
+    private GameObject _roomItemPrefab;
+    private float roomItemHeight;
 
     private void Start()
     {
@@ -27,6 +29,11 @@ public class RoomListPanel : BasePanel
 
         _refreshRoomBtn = transform.Find("RoomList/RefreshRoomBtn").GetComponent<Button>();
         _refreshRoomBtn.onClick.AddListener(RefreshRoomBtnClick);
+
+        _roomLayoutGroup = transform.Find("RoomList/ScrollRect/Layout").GetComponent<GridLayoutGroup>();
+
+        _roomItemPrefab = Resources.Load<GameObject>("UIPanel/RoomItem");
+        roomItemHeight = _roomItemPrefab.GetComponent<RectTransform>().sizeDelta.y;
         EnterAnim();
     }
 
@@ -42,8 +49,12 @@ public class RoomListPanel : BasePanel
     }
 
 
+    /// <summary>
+    /// 创建房间
+    /// </summary>
     private void CreateRoomBtnClick()
     {
+        _uiManager.PushPanel(UIPanelType.Room);
     }
 
     private void RefreshRoomBtnClick()
@@ -102,5 +113,30 @@ public class RoomListPanel : BasePanel
         transform.Find("BattleRes/UserName").GetComponent<Text>().text = userData.UserName;
         transform.Find("BattleRes/TotalCount").GetComponent<Text>().text = "总场数:" + userData.TotalCount.ToString();
         transform.Find("BattleRes/WinCount").GetComponent<Text>().text = "胜利:" + userData.WinCount.ToString();
+    }
+
+
+    private void LoadRoomItem(int count)
+    {
+        for (int i = 0; i < count; i++)
+        {
+            GameObject roomItem = Instantiate(_roomItemPrefab);
+            roomItem.transform.SetParent(_roomLayoutGroup.transform);
+        }
+
+
+        int roomCount = GetComponentsInChildren<RoomItem>().Length;
+        Vector2 size = _roomLayoutGroup.GetComponent<RectTransform>().sizeDelta;
+        Debug.Log(roomCount * (_roomItemPrefab.GetComponent<RectTransform>().sizeDelta.y + _roomLayoutGroup.spacing.y));
+        _roomLayoutGroup.GetComponent<RectTransform>().sizeDelta = new Vector2(size.x,
+            roomCount * (_roomItemPrefab.GetComponent<RectTransform>().sizeDelta.y + _roomLayoutGroup.spacing.y));
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            LoadRoomItem(1);
+        }
     }
 }
